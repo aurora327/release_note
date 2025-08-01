@@ -1,6 +1,7 @@
 **Prepare Enviroment**
 1. This solution uses the AMX instruction set, which is available on 4th-generation Xeon CPUs and later. Before using it, please ensure your machine has AMX instructions. You can use 'lscpu | grep amx' to check if the instruction set is available. If it is, the command's output will not be empty.
-2. The base image for this image is 'nvidia/cuda:12.6.0-cudnn-devel-ubuntu24.04'. Therefore, please ensure that the CUDA version on your machine is 12.6.0 or higher and that nvidia-docker is already installed on your system.  
+2. The base image for this image is 'nvidia/cuda:12.6.0-cudnn-devel-ubuntu24.04'. Therefore, please ensure that the CUDA version on your machine is 12.6.0 or higher and that nvidia-docker is already installed on your system.
+3. The container does not include the model files, so please prepare model in advance. You can then use the 'docker -v' command to mount model into the container. Refer to the command line below for an example.  
 
 **Benchmark Step** 
 
