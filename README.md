@@ -1,8 +1,21 @@
-# For docker image
+**Prepare Enviroment**
+1. This solution uses the AMX instruction set, which is available on 4th-generation Xeon CPUs and later. Before using it, please ensure your machine has AMX instructions. You can use 'lscpu | grep amx' to check if the instruction set is available. If it is, the command's output will not be empty.
+2. The base image for this image is 'nvidia/cuda:12.6.0-cudnn-devel-ubuntu24.04'. Therefore, please ensure that the CUDA version on your machine is 12.6.0 or higher and that nvidia-docker is already installed on your system.  
 
-Benchmark Step:
-1, docker load -i sglang.tar
-2, check if loading successfully: docker images
-3, docker run --name heteroflow_sglang_release --gpus all -it  --ipc=host --privileged --cap-add=SYS_NICE -v /data/DeepSeek-R1:/data/DeepSeek-R1/ sglang_release:latest
-4, cd /workspace
-5, sh benchmark.sh
+**Benchmark Step** 
+
+**IN BM**
+1. docker load -i sglang.tar  
+2. docker images   
+3. docker run --name sglang:latest --gpus all -it  --ipc=host --privileged --cap-add=SYS_NICE -shm-size=16g -v /data/DeepSeek-R1:/data/DeepSeek-R1/ sglang_release:latest
+
+**IN Docker**
+1. cd /workspace  
+2. sh benchmark.sh
+
+
+
+NOTES
+1. sglang.tar : Subject to the specific Docker image file name received.
+2. sglang_release:latest ：Base it on the ID and TAG shown by 'docker images'
+3. The benchmark script sets 'OMP_NUM_THREADS=24'. Please change this value to match your machine's actual configuration.A good general guideline is to set it to your core count minus 2, and using an even number is also preferred for better performance. For example, if 'lscpu' shows BM have 48 cores per socket, you could set that value to 46.
