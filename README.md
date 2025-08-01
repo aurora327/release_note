@@ -6,7 +6,7 @@
 **Benchmark Step** 
 
 **IN BM**
-1. docker load -i sglang.tar  
+1. gunzip -c sglang.tar.gz | docker load
 2. docker images   
 3. docker run --name sglang:latest --gpus all -it  --ipc=host --privileged --cap-add=SYS_NICE --shm-size=16g -v /data/DeepSeek-R1:/data/DeepSeek-R1/ sglang_release:latest
 
@@ -17,6 +17,6 @@
 
 
 NOTES
-1. sglang.tar : Subject to the specific Docker image file name received.
+1. sglang.tar.gz : Subject to the specific Docker image file name received.
 2. sglang_release:latest ：Base it on the ID and TAG shown by 'docker images'
 3. The benchmark script sets 'OMP_NUM_THREADS=24'. Please change this value to match your machine's actual configuration.A good general guideline is to set it to your core count minus 2, and using an even number is also preferred for better performance. For example, if 'lscpu' shows BM have 48 cores per socket, you could set that value to 46.
