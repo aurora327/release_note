@@ -8,7 +8,7 @@
 **IN BM**
 1. docker load -i sglang.tar  
 2. docker images   
-3. docker run --name sglang:latest --gpus all -it  --ipc=host --privileged --cap-add=SYS_NICE -shm-size=16g -v /data/DeepSeek-R1:/data/DeepSeek-R1/ sglang_release:latest
+3. docker run --name sglang:latest --gpus all -it  --ipc=host --privileged --cap-add=SYS_NICE --shm-size=16g -v /data/DeepSeek-R1:/data/DeepSeek-R1/ sglang_release:latest
 
 **IN Docker**
 1. cd /workspace  
