@@ -20,3 +20,5 @@ NOTES
 1. sglang.tar.gz : Subject to the specific Docker image file name received.
 2. sglang_release:latest ：Base it on the ID and TAG shown by 'docker images'
 3. The benchmark script sets 'OMP_NUM_THREADS=24'. Please change this value to match your machine's actual configuration.A good general guideline is to set it to your core count minus 2, and using an even number is also preferred for better performance. For example, if 'lscpu' shows BM have 48 cores per socket, you could set that value to 46.
+4. When using a larger batch size, such as greater than 16, consider adding export XFT_MOE_ENGINE=0 to the benchmark script.
+5. In the latest codebase, the XDNN64 parameter in the benchmark script has no impact on performance and can therefore be removed. 
